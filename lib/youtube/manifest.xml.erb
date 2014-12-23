@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+
+<entry xmlns="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" xmlns:yt="http://gdata.youtube.com/schemas/2007">
+  <media:group>
+    <media:title type="plain"><%=h title.name %></media:title>
+    <media:description type="plain"><%= h title.long_description %></media:description>
+    <media:category label="<%=h title.categories %>"
+      scheme="http://gdata.youtube.com/schemas/2007/categories.cat">
+      <%=h title.categories %>
+    </media:category>
+    <media:keywords><%=h title.keywords.join(',') %></media:keywords>
+    <% if editorial_version.location_based_rating_system? %>
+      <media:rating scheme="<%=h editorial_version.rating_system %>" country="<%=h editorial_version.rating_countries.join(',') %>">
+        1
+      </media:rating>
+    <% else %>
+      <media:rating scheme="<%=h editorial_version.rating_system %>">
+        <%=h editorial_version.rating %>
+      </media:rating>
+    <% end %>
+  </media:group>
+</entry>
